@@ -1,2 +1,15 @@
+To use the git-version of configs:
+
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
 ln -s $HOME/.vim/gvimrc $HOME/.gvimrc
+
+-------------------------------
+
+To download all the submodules:
+
+git submodule init
+git submodule update
+
+To redo the helptags with pathogen:
+
+vim -e -c 'call pathogen#helptags()' -c q

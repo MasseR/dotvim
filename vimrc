@@ -1,4 +1,7 @@
+" Pathogen requires restarting the filetype plugins
+filetype off
 call pathogen#runtime_append_all_bundles() 
+
 source /usr/share/vim/vim72/vimrc_example.vim
 filetype on
 filetype plugin indent on
