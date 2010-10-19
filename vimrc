@@ -127,8 +127,8 @@ set ruler
 set wildmenu
 
 " Load folds etc
-au BufWinLeave *.py mkview
-au BufWinEnter *.py silent loadview
+au BufWinLeave *.* mkview
+au BufWinEnter *.* silent loadview
 
 " Backups
 set backup
