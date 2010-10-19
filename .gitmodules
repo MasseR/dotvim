@@ -1,0 +1,3 @@
+[submodule "bundle/histwin"]
+	path = bundle/histwin
+	url = http://github.com/chrisbra/histwin.vim.git
