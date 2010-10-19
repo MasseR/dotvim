@@ -1,0 +1,6 @@
+download_script.php?src_id=10325: call delete('/home/masse/.vim/plugin/twitvim.vim')|call delete('/home/masse/.vim/doc/twitvim.txt')
+vimchant.vba: call delete('/home/masse/.vim/autoload/vimchant.vim')|call delete('/home/masse/.vim/doc/vimchant.txt')|call delete('/home/masse/.vim/plugin/vimchant.vim')
+histwin.vba: call delete('/home/masse/.vim/doc/histwin.txt')|call delete('/home/masse/.vim/plugin/histwinPlugin.vim')|call delete('/home/masse/.vim/autoload/histwin.vim')
+Hoogle.vba: call delete('/home/masse/.vim/plugin/hoogle.vim')|call delete('/home/masse/.vim/doc/Hoogle.txt')
+haskellmode-20100622.vba: call delete('/home/masse/.vim/compiler/ghc.vim')|call delete('/home/masse/.vim/ftplugin/haskell.vim')|call delete('/home/masse/.vim/ftplugin/haskell_doc.vim')|call delete('/home/masse/.vim/ftplugin/haskell_hpaste.vim')|call delete('/home/masse/.vim/autoload/haskellmode.vim')|call delete('/home/masse/.vim/doc/haskellmode.txt')
+histwin-0.19.vba: call delete('/home/masse/.vim/plugin/histwinPlugin.vim')|call delete('/home/masse/.vim/autoload/histwin.vim')|call delete('/home/masse/.vim/doc/histwin.txt')
