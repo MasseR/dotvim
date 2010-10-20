@@ -115,16 +115,19 @@ syn match hsFunction    "\<\(putChar\|putStr\|putStrLn\|print\)\>"
 syn match hsFunction    "\<\(getChar\|getLine\|getContents\|interact\)\>"
 syn match hsFunction    "\<\(readFile\|writeFile\|appendFile\|readIO\|readLn\)\>"
 
+syn keyword hsTodo contained XXX TODO FIXME
+syn cluster hsCommentGroup contains=cTodo
 
 " Comments
 syn match   hsLineComment      "--.*"
-syn region  hsBlockComment     start="{-"  end="-}" contains=hsBlockComment
+syn region  hsBlockComment     start="{-"  end="-}" contains=hsBlockComment, hsCommentGroup
 syn region  hsPragma	       start="{-#" end="#-}"
 
 " Literate comments--any line not starting with '>' is a comment.
 if exists("b:hs_literate_comments")
   syn region  hsLiterateComment   start="^" end="^>"
 endif
+
 
 
 if !exists("hs_minlines")
@@ -171,6 +174,7 @@ if version >= 508 || !exists("did_hs_syntax_inits")
   hi link hsEnumConst           Constant
   hi link hsConstant            Constant
   hi link hsDebug               Debug
+  hi link hsTodo		Todo
 
   delcommand HiLink
 endif

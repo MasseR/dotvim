@@ -4,3 +4,4 @@ histwin.vba: call delete('/home/masse/.vim/doc/histwin.txt')|call delete('/home/
 Hoogle.vba: call delete('/home/masse/.vim/plugin/hoogle.vim')|call delete('/home/masse/.vim/doc/Hoogle.txt')
 histwin-0.19.vba: call delete('/home/masse/.vim/plugin/histwinPlugin.vim')|call delete('/home/masse/.vim/autoload/histwin.vim')|call delete('/home/masse/.vim/doc/histwin.txt')
 haskellmode-20100622.vba: call delete('/home/masse/.vim/compiler/ghc.vim')|call delete('/home/masse/.vim/ftplugin/haskell.vim')|call delete('/home/masse/.vim/ftplugin/haskell_doc.vim')|call delete('/home/masse/.vim/ftplugin/haskell_hpaste.vim')|call delete('/home/masse/.vim/autoload/haskellmode.vim')|call delete('/home/masse/.vim/doc/haskellmode.txt')
+HaskellConceal.vba: call delete('/home/masse/.vim/after/syntax/haskell.vim')|call delete('/home/masse/.vim/set conceallevel=2')

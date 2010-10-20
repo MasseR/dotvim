@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/masse/git/vifm/src'
 let g:netrw_dirhist_2='/home/masse/.vim/ftplugin'
 let g:netrw_dirhist_3='/home/masse/programming/haskell/mgrep/src/Mgrep'
+let g:netrw_dirhist_4='/home/masse/programming/haskell/mgrep/src'

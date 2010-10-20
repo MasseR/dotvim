@@ -15,4 +15,5 @@ setlocal suffixesadd=hs,lhs,hsc
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal makeprg=ghc\ --make\ %
+setlocal conceallevel=2
 noremap <F6> :!ghci %<cr>
