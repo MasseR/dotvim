@@ -8,6 +8,7 @@
 " please send patches to <claus.reinke@talk21.com>
 
 " try gf on import line, or ctrl-x ctrl-i, or [I, [i, ..
+compiler ghc
 setlocal include=^import\\s*\\(qualified\\)\\?\\s*
 setlocal includeexpr=substitute(v:fname,'\\.','/','g').'.'
 setlocal suffixesadd=hs,lhs,hsc
