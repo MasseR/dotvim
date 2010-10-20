@@ -87,6 +87,7 @@ au BufRead,BufNewFile *.tex set filetype=tex
 " Twitter > Identi.ca
 let twitvim_api_root = "http://identi.ca/api"
 let twitvim_browser_cmd = "firefox"
+let g:haddock_browser="firefox"
 
 " Load sessions
 function! MakeSession()
@@ -138,4 +139,8 @@ set laststatus=2
 
 set backupdir=~/.backup/
 
-let g:haddock_browser="firefox"
+
+if version >= 703
+    set undofile
+    set undodir=$HOME/.vim-undos/
+endif
