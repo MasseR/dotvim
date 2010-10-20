@@ -43,6 +43,14 @@ function! GetHaskellIndent()
         return match(line, '\s*where \zs\|\S') + &shiftwidth
     endif
 
+    if line =~ '[!#$%&*+./<=>?@\\^|~-]$\|\<in$'
+        return match(line, '\s*where \zs\|\S') + &shiftwidth
+    endif
+
+    if line =~ '[!#$%&*+./<=>?@\\^|~-]$\|\<let$'
+        return match(line, '\s*where \zs\|\S') + &shiftwidth
+    endif
+
     if line =~ '{$'
         return match(line, '\s*where \zs\|\S') + &shiftwidth
     endif
