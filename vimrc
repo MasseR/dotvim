@@ -147,3 +147,6 @@ endif
 
 " Notes directory
 set tags+=$HOME/.tdoc
+
+" Do not auto-format paragraphs
+set formatoptions-=a
