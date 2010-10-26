@@ -13,3 +13,10 @@ git submodule update
 To redo the helptags with pathogen:
 
 vim -e -c 'call pathogen#helptags()' -c q
+
+-------------------------------
+
+If you know you have a 256 color terminal but can't seem to get it working.
+Find a computer where it works with the same terminal and do 
+`infocmp > tmpfile` which contains the termcap info. Then copy that file and
+compile it with `tic tmpfile`
