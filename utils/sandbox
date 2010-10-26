@@ -1,0 +1,62 @@
+#!/bin/bash -x
+# Sandboxing. Temporary files
+
+FMT="+%Y-%m-%d"
+DATE=$(date $FMT)
+NOTEDIR=$HOME/.tdoc
+
+# Get the directory for a specific date. Tries to understand modifiers like
+# "yesterday"
+function getdir()
+{
+    DIR="$HOME/temp"
+    subdir=""
+    d=$DATE
+    args=$(getopt -o d:c: -- "$@")
+    eval set -- "$args"
+    for i
+    do
+        case "$i" in
+            -d) shift; d=$(date --date="$1" $FMT); shift;;
+            -c) shift; subdir=$1; shift;;
+        esac
+    done
+    DIR=$DIR/$d/$subdir
+}
+
+function td()
+{
+    # Fallback
+    DIR="$HOME/temp/"
+    getdir "$@"
+    if [ ! -e $DIR ]
+    then
+        mkdir -p $DIR
+    fi
+    cd $DIR
+}
+
+function tdoc()
+{
+    file="$NOTEDIR/daily-$DATE.txt"
+    if [ ! -e $NOTEDIR ]
+    then
+	mkdir -p $NOTEDIR
+    fi
+    vim -c "set filetype=help" $file
+    vim -e -c "helptags $NOTEDIR" -c q
+}
+
+function notes()
+{
+    file="$NOTEDIR/daily-$DATE.txt"
+    if [ ! -e $NOTEDIR ]
+    then
+	mkdir -p $NOTEDIR
+    fi
+    vim $NOTEDIR/$1
+    vim -e -c "helptags $NOTEDIR" -c q
+}
+
+#export -f td
+#export -f getdir

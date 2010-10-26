@@ -144,3 +144,6 @@ if version >= 703
     set undofile
     set undodir=$HOME/.vim-undos/
 endif
+
+" Notes directory
+set tags+=$HOME/.tdoc
