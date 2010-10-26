@@ -49,12 +49,18 @@ function tdoc()
 
 function notes()
 {
-    file="$NOTEDIR/daily-$DATE.txt"
+    filename=""
+    case $1 in
+	*.txt) filename=$1;;
+	*) filename="$1".txt;;
+    esac
+    file="$NOTEDIR/$filename"
     if [ ! -e $NOTEDIR ]
     then
 	mkdir -p $NOTEDIR
     fi
-    vim $NOTEDIR/$1
+    echo $file
+    vim $file
     vim -e -c "helptags $NOTEDIR" -c q
 }
 
