@@ -117,7 +117,7 @@ augroup END
 
 "set expandtab
 set textwidth=0
-"set tabstop=4
+set noexpandtab
 set softtabstop=4
 set shiftwidth=4
 set autoindent
