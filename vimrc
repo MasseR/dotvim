@@ -77,9 +77,7 @@ autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" -
 autocmd BufReadPost *.rtf silent %!unrtf --text "%"
 
 " Enable text editing features
-autocmd BufRead,BufNewFile *.txt set fo+=a " Paragraph formatting
 autocmd BufRead,BufNewFile *.txt set textwidth=75
-autocmd BufRead,BufNewFile *.txt set spell spelllang=en_us
 
 " Set proper filetype for latex
 au BufRead,BufNewFile *.tex set filetype=tex
@@ -148,5 +146,3 @@ endif
 " Notes directory
 set tags+=$HOME/.tdoc
 
-" Do not auto-format paragraphs
-set formatoptions-=a
