@@ -1,0 +1,7 @@
+*.h
+*.cpp
+ctagautomater
+src/
+*.o
+*.hi
+tags
