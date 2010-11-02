@@ -1,4 +1,4 @@
-function DirExists(dir)
+function! DirExists(dir)
     let s:exists = finddir(a:dir)
     if s:exists == ""
 	return 0
@@ -7,7 +7,7 @@ function DirExists(dir)
     endif
 endfunction
 
-function Mkbuilddir(builddir)
+function! Mkbuilddir(builddir)
     if !DirExists(a:builddir)
 	call mkdir(a:builddir)
     endif
@@ -18,7 +18,7 @@ function Mkbuilddir(builddir)
     unlet s:exists
 endfunction
 
-function Build(action)
+function! Build(action)
     let s:curdir = getcwd()
     let s:builddir = s:curdir . "/build"
 

@@ -1,1 +1,1 @@
-CMake based project.
+CMake based project. For use, just symlink the in.vim and out.vim files as necessary.
