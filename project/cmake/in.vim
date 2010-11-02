@@ -40,3 +40,6 @@ endfunction
 
 noremap <F5> :call Build("make")<cr>
 noremap <F6> :call Build("make test")<cr>
+let s:tags = getcwd() . "/tags"
+let &tags = &tags . "," . s:tags
+set omnifunc=omni#cpp#complete#Main
