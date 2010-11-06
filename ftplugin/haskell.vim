@@ -8,7 +8,13 @@
 " please send patches to <claus.reinke@talk21.com>
 
 " try gf on import line, or ctrl-x ctrl-i, or [I, [i, ..
-let b:ghc_staticoptions="-i" . expand("%:h")
+let s:path = "%"
+let s:ipath = ""
+while strlen(expand(s:path)) > 1
+    let s:path = s:path . ":h"
+    let s:ipath = s:ipath . ":" . expand(s:path)
+endwhile
+let b:ghc_staticoptions="-i" . s:ipath
 compiler ghc
 setlocal include=^import\\s*\\(qualified\\)\\?\\s*
 setlocal includeexpr=substitute(v:fname,'\\.','/','g').'.'
@@ -17,4 +23,4 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 " setlocal makeprg=ghc\ --make\ %
 setlocal conceallevel=2
-noremap <F6> :!ghci -i%:h %<cr>
+execute "noremap <F6> :!ghci " . b:ghc_staticoptions . " %<cr>"
