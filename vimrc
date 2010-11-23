@@ -147,3 +147,6 @@ endif
 " Notes directory
 set tags+=$HOME/.tdoc
 
+" Swap the backtick and single quote
+nnoremap ' `
+nnoremap ` '
