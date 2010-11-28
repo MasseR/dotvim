@@ -150,3 +150,5 @@ set tags+=$HOME/.tdoc
 " Swap the backtick and single quote
 nnoremap ' `
 nnoremap ` '
+" Load custom syntax files
+so $HOME/.vim/syntax/whitespace.vim
