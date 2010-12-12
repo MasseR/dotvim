@@ -2,7 +2,9 @@
 filetype off
 call pathogen#runtime_append_all_bundles() 
 
-source /usr/share/vim/vim72/vimrc_example.vim
+let s:source=globpath(&rtp, "vimrc_example.vim")
+execute ":source " . s:source
+unlet s:source
 filetype on
 filetype plugin indent on
 syntax on
