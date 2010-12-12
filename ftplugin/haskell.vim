@@ -23,4 +23,8 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 " setlocal makeprg=ghc\ --make\ %
 setlocal conceallevel=2
-execute "noremap <F6> :!ghci " . b:ghc_staticoptions . " %<cr>"
+let s:terminal="!ghci "
+if has("gui_running")
+    let s:terminal="!urxvt -e ghci "
+endif
+execute "noremap <F6> :" . s:terminal . b:ghc_staticoptions . " %<cr>"
