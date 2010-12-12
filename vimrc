@@ -152,3 +152,6 @@ set tags+=$HOME/.tdoc
 " Swap the backtick and single quote
 nnoremap ' `
 nnoremap ` '
+
+" Open a terminal opened to the current directory
+noremap <F12> :call system("urxvtc -cd " . expand("%:p:h"))<cr>
