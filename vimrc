@@ -37,8 +37,8 @@ let OmniCpp_MayCompleteArrow = 1
 let OmniCpp_MayCompleteScope = 1
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " Automatically open popup
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd CursorMovedI *.* if pumvisible() == 0|pclose|endif
+autocmd InsertLeave *.* if pumvisible() == 0|pclose|endif
 set completeopt=menuone,menu,longest
 """""""""""""""""""""""
 " End omnicpp
