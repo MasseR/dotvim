@@ -89,6 +89,7 @@ au BufRead,BufNewFile *.tex set filetype=tex
 let twitvim_api_root = "http://identi.ca/api"
 let twitvim_browser_cmd = "firefox"
 let g:haddock_browser="firefox"
+let g:haddock_indexfiledir="$HOME/.cabal/"
 
 " Load sessions
 function! MakeSession()
