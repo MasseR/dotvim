@@ -174,7 +174,10 @@ function! GHC_HaveTypes()
 endfunction
 
 " update b:ghc_types after successful make
-au QuickFixCmdPost make if GHC_CountErrors()==0 | silent call GHC_BrowseAll() | endif
+" Fix: If the quickfixcmdpost is ran after a make command, the event is
+" launched for every buffer, be they haskell sources or not. This could be
+" better if it's buffer local, even if it's launched after vimgrep etc
+au QuickFixCmdPost <buffer> if GHC_CountErrors()==0 | silent call GHC_BrowseAll() | endif
 
 " count only error entries in quickfix list, ignoring warnings
 function! GHC_CountErrors()
