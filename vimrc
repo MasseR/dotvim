@@ -1,6 +1,6 @@
 " Pathogen requires restarting the filetype plugins
 filetype off
-call pathogen#runtime_append_all_bundles() 
+call pathogen#runtime_append_all_bundles()
 
 let s:source=globpath(&rtp, "vimrc_example.vim")
 execute ":source " . s:source
