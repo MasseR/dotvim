@@ -13,3 +13,6 @@
 [submodule "bundle/OmniCppComplete"]
 	path = bundle/OmniCppComplete
 	url = http://github.com/MasterKey/OmniCppComplete.git
+[submodule "vim-scala"]
+	path = vim-scala
+	url = https://github.com/sahchandler/vim-scala.git
