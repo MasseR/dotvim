@@ -21,6 +21,7 @@ setlocal includeexpr=substitute(v:fname,'\\.','/','g').'.'
 setlocal suffixesadd=hs,lhs,hsc
 setlocal shiftwidth=2
 setlocal softtabstop=2
+setlocal expandtab
 " setlocal makeprg=ghc\ --make\ %
 setlocal conceallevel=2
 let s:terminal="!ghci "
