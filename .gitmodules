@@ -16,3 +16,6 @@
 [submodule "vim-scala"]
 	path = vim-scala
 	url = https://github.com/sahchandler/vim-scala.git
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = https://github.com/sjl/gundo.vim.git
