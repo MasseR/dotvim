@@ -160,3 +160,6 @@ so $HOME/.vim/syntax/whitespace.vim
 
 " Open a terminal opened to the current directory
 noremap <F12> :call system("urxvtc -cd " . expand("%:p:h"))<cr>
+
+" Toggle Gundo window
+noremap <F3> :GundoToggle<cr>
