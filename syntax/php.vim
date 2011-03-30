@@ -21,16 +21,16 @@
 "           php_parent_error_open = 1  for skipping an php end tag,
 "                                      if there exists an open ( or [ without a closing one
 "           php_no_shorttags = 1  don't sync <? ?> as php
-"           php_folding = 1  for folding classes and functions
+"           b:php_folding = 1  for folding classes and functions
 "           php_sync_method = x
 "                             x=-1 to sync by search ( default )
 "                             x>0 to sync at least x lines backwards
 "                             x=0 to sync from start
 "
 " Note:
-" Setting php_folding=1 will match a closing } by comparing the indent
+" Setting b:php_folding=1 will match a closing } by comparing the indent
 " before the class or function keyword with the indent of a matching }.
-" Setting php_folding=2 will match all of pairs of {,} ( see known
+" Setting b:php_folding=2 will match all of pairs of {,} ( see known
 " bugs ii )
 "
 " Known Bugs:
@@ -40,7 +40,7 @@
 "        before the string, when the the closing ) or ] is on the same line
 "        where the string started. In this case a following ) or ] after
 "        the string would be highlighted as an error, what is incorrect.
-"    ii) Same problem if you are setting php_folding = 2 with a closing
+"    ii) Same problem if you are setting b:php_folding = 2 with a closing
 "        } inside an string on the first line of this string.
 "
 "  - A double-quoted string like this:
@@ -562,7 +562,7 @@ else
 endif
 
 " Fold
-if exists("php_folding") && php_folding==1
+if exists("b:php_folding") && b:php_folding==1
 " match one line constructs here and skip them at folding
   syn keyword phpSCKeyword  abstract final private protected public static  contained
   syn keyword phpFCKeyword  function  contained
@@ -580,7 +580,7 @@ if exists("php_folding") && php_folding==1
   syn region phpFoldInterface matchgroup=Structure start="^\z(\s*\)interface\s\+\([^}]*$\)\@=" matchgroup=Delimiter end="^\z1}" contains=@phpClFunction,phpFoldFunction contained transparent fold extend
   syn region phpFoldCatch matchgroup=Exception start="^\z(\s*\)catch\s\+\([^}]*$\)\@=" matchgroup=Delimiter end="^\z1}" contains=@phpClFunction,phpFoldFunction contained transparent fold extend
   syn region phpFoldTry matchgroup=Exception start="^\z(\s*\)try\s\+\([^}]*$\)\@=" matchgroup=Delimiter end="^\z1}" contains=@phpClFunction,phpFoldFunction contained transparent fold extend
-elseif exists("php_folding") && php_folding==2
+elseif exists("b:php_folding") && b:php_folding==2
 "  syn keyword phpDefine function  contained
 "  syn keyword phpStructure  abstract class interface  contained
 "  syn keyword phpException  catch throw try contained
