@@ -1,2 +1,2 @@
 setlocal makeprg=javac\ -g\ %
-execute "noremap <F6> :!jdb %:r<cr>"
+execute "noremap <buffer> <F6> :!jdb %:r<cr>"

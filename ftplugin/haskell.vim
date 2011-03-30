@@ -28,4 +28,4 @@ let s:terminal="!ghci "
 if has("gui_running")
     let s:terminal="!urxvt -e ghci "
 endif
-execute "noremap <F6> :" . s:terminal . b:ghc_staticoptions . " %<cr>"
+execute "noremap <buffer> <F6> :" . s:terminal . b:ghc_staticoptions . " %<cr>"
