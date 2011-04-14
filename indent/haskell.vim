@@ -32,8 +32,35 @@ endif
 setlocal indentexpr=GetHaskellIndent()
 setlocal indentkeys=!^F,o,O
 
+" Taken from javas indenting
+function! SkipHaskellBlanksAndComments(startline)
+  let lnum = a:startline
+  while lnum > 1
+    let lnum = prevnonblank(lnum)
+    if getline(lnum) =~ '-/\s*$'
+      while getline(lnum) !~ '{-' && lnum > 1
+        let lnum = lnum - 1
+      endwhile
+      if getline(lnum) =~ '^\s*-}'
+        let lnum = lnum - 1
+      else
+        break
+      endif
+    elseif getline(lnum) =~ '^\s*--'
+      let lnum = lnum - 1
+    else
+      break
+    endif
+  endwhile
+  return lnum
+endfunction
+
 function! GetHaskellIndent()
     let line = substitute(getline(getpos('.')[1] - 1), '\t', repeat(' ', &tabstop), 'g')
+
+    if line =~ '^.*\({-.*\|--\)'
+	return match(line, '\S')
+    endif
 
     if line =~ '[!#$%&*+./<=>?@\\^|~-]$\|\<do$'
         return match(line, '\s*where \zs\|\S') + &shiftwidth
