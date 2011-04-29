@@ -147,6 +147,17 @@ snippet cl
 			${6:// code...}
 		}
 	}
+# TestSuite
+snippet clte
+	class ${1:ClassName}Test extends PHPUnit_Framework_TestCase
+	{
+	    ${2:// tests}
+	}
+snippet te
+	public function test${1:testname}()
+	{
+	    ${2:// test}
+	}
 # define(...)
 snippet def
 	define('${1}'${2});${3}
