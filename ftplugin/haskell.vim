@@ -26,7 +26,11 @@ while strlen(s:expanded) > 1
     endif
     let s:ipath = s:ipath . ":" . expand(s:path)
 endwhile
-let b:ghc_staticoptions="-i" . s:ipath . " -package-conf " . s:pkgconf
+if strlen(s:pkgconf) > 1
+    let b:ghc_staticoptions="-i" . s:ipath . " -package-conf " . s:pkgconf
+else
+    let b:ghc_staticoptions="-i" . s:ipath
+endif
 compiler ghc
 setlocal include=^import\\s*\\(qualified\\)\\?\\s*
 setlocal includeexpr=substitute(v:fname,'\\.','/','g').'.'
