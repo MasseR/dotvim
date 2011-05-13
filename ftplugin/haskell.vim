@@ -10,11 +10,23 @@
 " try gf on import line, or ctrl-x ctrl-i, or [I, [i, ..
 let s:path = "%"
 let s:ipath = ""
-while strlen(expand(s:path)) > 1
+let s:pkgconf = ""
+let s:expanded = expand(s:path)
+while strlen(s:expanded) > 1
     let s:path = s:path . ":h"
+    let s:expanded = expand(s:path)
+    if filereadable(s:expanded . "/cabal-dev/cabal.config")
+	let s:conf = readfile(s:expanded . "/cabal-dev/cabal.config")
+	for line in s:conf
+	    let s:temp = matchstr(line, "package-db: .*")
+	    if strlen(s:temp) > 1
+		let s:pkgconf = matchstr(s:temp, "/.*")
+	    endif
+	endfor
+    endif
     let s:ipath = s:ipath . ":" . expand(s:path)
 endwhile
-let b:ghc_staticoptions="-i" . s:ipath
+let b:ghc_staticoptions="-i" . s:ipath . " -package-conf " . s:pkgconf
 compiler ghc
 setlocal include=^import\\s*\\(qualified\\)\\?\\s*
 setlocal includeexpr=substitute(v:fname,'\\.','/','g').'.'
