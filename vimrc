@@ -131,10 +131,6 @@ set autoindent
 set ruler
 set wildmenu
 
-" Load folds etc
-au BufWinLeave *.* mkview
-au BufWinEnter *.* silent loadview
-
 " Backups
 set backup
 
