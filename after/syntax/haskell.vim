@@ -24,6 +24,7 @@ if exists('g:no_haskell_conceal') || !has('conceal')
     finish
 endif
 
+syntax match hsNiceOperator "mappend" conceal cchar=⊕
 syntax match hsNiceOperator "\\" conceal cchar=λ
 syntax match hsNiceOperator "<-" conceal cchar=←
 syntax match hsNiceOperator "->" conceal cchar=→
