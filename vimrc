@@ -1,3 +1,4 @@
+set hidden " For lustyexplorer
 " Pathogen requires restarting the filetype plugins
 filetype off
 call pathogen#runtime_append_all_bundles()
