@@ -10,6 +10,10 @@ filetype on
 filetype plugin indent on
 syntax on
 
+" I think we can trust urxvt having 256 colors
+if $TERM == "rxvt-unicode"
+    set t_Co=256
+endif
 " Zenburn
 " set t_Co=256
 " Fallback
