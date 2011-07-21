@@ -34,3 +34,6 @@
 [submodule "bundle/vimerl"]
 	path = bundle/vimerl
 	url = https://github.com/oscarh/vimerl.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = https://github.com/javanthropus/vim-matchit.git
