@@ -37,3 +37,6 @@
 [submodule "bundle/matchit"]
 	path = bundle/matchit
 	url = https://github.com/javanthropus/vim-matchit.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = git@github.com:MasseR/snipmate.vim.git
