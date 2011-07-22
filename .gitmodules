@@ -37,3 +37,6 @@
 [submodule "bundle/matchit"]
 	path = bundle/matchit
 	url = https://github.com/javanthropus/vim-matchit.git
+[submodule "bundle/VimClojure"]
+	path = bundle/VimClojure
+	url = https://github.com/vim-scripts/VimClojure.git
