@@ -33,7 +33,7 @@
 	url = https://github.com/pangloss/vim-javascript.git
 [submodule "bundle/vimerl"]
 	path = bundle/vimerl
-	url = https://github.com/oscarh/vimerl.git
+	url = git@github.com:MasseR/vimerl.git
 [submodule "bundle/matchit"]
 	path = bundle/matchit
 	url = https://github.com/javanthropus/vim-matchit.git
