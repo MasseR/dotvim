@@ -33,10 +33,13 @@
 	url = https://github.com/pangloss/vim-javascript.git
 [submodule "bundle/vimerl"]
 	path = bundle/vimerl
-	url = https://github.com/oscarh/vimerl.git
+	url = git@github.com:MasseR/vimerl.git
 [submodule "bundle/matchit"]
 	path = bundle/matchit
 	url = https://github.com/javanthropus/vim-matchit.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = git@github.com:MasseR/snipmate.vim.git
 [submodule "bundle/VimClojure"]
 	path = bundle/VimClojure
 	url = https://github.com/vim-scripts/VimClojure.git
