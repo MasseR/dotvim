@@ -1,3 +1,4 @@
+
 set hidden " For lustyexplorer
 " Pathogen requires restarting the filetype plugins
 filetype off
@@ -164,3 +165,9 @@ noremap <F12> :call system("urxvtc -cd " . expand("%:p:h"))<cr>
 
 " Toggle Gundo window
 noremap <F2> :GundoToggle<cr>
+
+" Gui options
+set guioptions-=m " No menu
+set guioptions-=T " No toolbar
+" Inconsolata font for gvim
+set guifont=Inconsolata\ Medium\ 9
