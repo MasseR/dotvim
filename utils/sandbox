@@ -5,23 +5,22 @@ FMT="+%Y-%m-%d"
 DATE=$(date $FMT)
 NOTEDIR=$HOME/.tdoc
 
+function dmkdir()
+{
+    prefix=$1
+    date=$2
+    year=$(date --date="$date" "+%Y")
+    month=$(date --date="$date" "+%m")
+    day=$(date --date="$date" "+%d")
+    DIR=$prefix/$year/$month/$day
+}
+
 # Get the directory for a specific date. Tries to understand modifiers like
 # "yesterday"
 function getdir()
 {
-    DIR="$HOME/temp"
-    subdir=""
-    d=$DATE
-    args=$(getopt -o d:c: -- "$@")
-    eval set -- "$args"
-    for i
-    do
-        case "$i" in
-            -d) shift; d=$(date --date="$1" $FMT); shift;;
-            -c) shift; subdir=$1; shift;;
-        esac
-    done
-    DIR=$DIR/$d/$subdir
+    prefix="$HOME/temp"
+    dmkdir $prefix $1
 }
 
 function td()
