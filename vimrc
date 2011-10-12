@@ -119,8 +119,8 @@ function! LoadSession()
     echo "No session loaded."
   endif
 endfunction
-map \l :call LoadSession()<cr>
-au VimLeave * :call MakeSession()
+" map \l :call LoadSession()<cr>
+" au VimLeave * :call MakeSession()
 
 " notes syntax 
 augroup filetypedetect
@@ -171,3 +171,8 @@ set guioptions-=m " No menu
 set guioptions-=T " No toolbar
 " Inconsolata font for gvim
 set guifont=Inconsolata\ Medium\ 9
+
+" Read project settings
+if filereadable(".project.vim")
+    source .project.vim
+endif
