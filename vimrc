@@ -81,6 +81,10 @@ au BufRead,BufNewFile *.info	set filetype=dosini " Drupal ini file
 " Haxe filetype detection
 au BufRead,BufNewFile *.hx set filetype=haxe
 
+" ClojureScript filetype detection
+au BufRead,BufNewFile *.cljs set filetype=clojure
+au BufRead,BufNewFile *.cljs call PareditInitBuffer()
+
 " Document filetype detections
 autocmd BufReadPost *.doc silent %!antiword "%"
 autocmd BufReadPost *.odt,*.odp silent %!odt2txt "%"
