@@ -129,6 +129,7 @@ endfunction
 " notes syntax 
 augroup filetypedetect
         au BufNewFile,BufRead *.notes setf notes
+        au BufNewFile,BufRead *.qml set filetype=qml
 augroup END
 
 "set expandtab
