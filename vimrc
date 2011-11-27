@@ -74,10 +74,10 @@ set list listchars=tab:»·
 set foldmethod=syntax
 
 " Drupal filetype detections
-au BufRead,BufNewFile *.module	set filetype=php " Drupal module
-au BufRead,BufNewFile *.install	set filetype=php " Drupal install file
-au BufRead,BufNewFile *.inc	set filetype=php " Generic php include
-au BufRead,BufNewFile *.info	set filetype=dosini " Drupal ini file
+au BufRead,BufNewFile *.module  set filetype=php " Drupal module
+au BufRead,BufNewFile *.install set filetype=php " Drupal install file
+au BufRead,BufNewFile *.inc     set filetype=php " Generic php include
+au BufRead,BufNewFile *.info    set filetype=dosini " Drupal ini file
 " Haxe filetype detection
 au BufRead,BufNewFile *.hx set filetype=haxe
 
@@ -128,7 +128,8 @@ endfunction
 
 " notes syntax 
 augroup filetypedetect
-	au BufNewFile,BufRead *.notes setf notes
+        au BufNewFile,BufRead *.notes setf notes
+        au BufNewFile,BufRead *.qml set filetype=qml
 augroup END
 
 "set expandtab
