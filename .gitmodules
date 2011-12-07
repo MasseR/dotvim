@@ -49,3 +49,6 @@
 [submodule "bundle/VimDebugger"]
 	path = bundle/VimDebugger
 	url = https://github.com/taxilian/VimDebugger.git
+[submodule "bundle/dbext"]
+	path = bundle/dbext
+	url = https://github.com/zklinger/dbext.git
