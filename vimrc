@@ -60,6 +60,7 @@ set mouse="a"
 abbr =! !=
 abbr itn int
 abbr iint int
+abbr functoin function
 
 " Remap \bl to :e # (Open the last edited buffer)
 noremap \bl :e #<cr>
