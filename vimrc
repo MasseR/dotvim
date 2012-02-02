@@ -64,6 +64,7 @@ abbr iint int
 abbr [9 []
 " In erlang, functions are separated with a semicolon unless it's the last one
 abbr .; .
+abbr functoin function
 
 " Remap \bl to :e # (Open the last edited buffer)
 noremap \bl :e #<cr>
