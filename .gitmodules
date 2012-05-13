@@ -52,3 +52,6 @@
 [submodule "bundle/dbext"]
 	path = bundle/dbext
 	url = https://github.com/zklinger/dbext.git
+[submodule "bundle/vimwiki"]
+	path = bundle/vimwiki
+	url = https://github.com/vim-scripts/vimwiki.git
