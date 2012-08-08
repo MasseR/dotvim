@@ -1,6 +1,7 @@
 setlocal makeprg=php\ -l\ %
 setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 let b:php_folding=1
+setlocal keywordprg=~/.vim/bin/php_doc
 
 " Debugger bindings
 map <F6> :DbgRun<cr>
