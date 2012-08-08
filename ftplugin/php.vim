@@ -27,6 +27,9 @@ function s:ShowErrors()
         endif
         unlet error
     endfor
+
+    " Possible fix for console vim. Flashes the screen though
+    redraw!
 endfunction
 
 function s:ClearErrors()
