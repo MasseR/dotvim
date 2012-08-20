@@ -8,6 +8,10 @@
 " please send patches to <claus.reinke@talk21.com>
 
 " try gf on import line, or ctrl-x ctrl-i, or [I, [i, ..
+if !exists("autocommands_loaded")
+    let autocommands_loaded=1
+    au BufWritePost *.hs :silent !hasktags -c --ignore-close-implementation --append %
+endif
 let s:path = "%"
 let s:ipath = ""
 let s:pkgconf = ""
