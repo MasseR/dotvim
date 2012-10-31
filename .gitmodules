@@ -61,3 +61,6 @@
 [submodule "bundle/html-template-syntax"]
 	path = bundle/html-template-syntax
 	url = https://github.com/pbrisbin/html-template-syntax.git
+[submodule "bundle/vim-scala"]
+	path = bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala.git
