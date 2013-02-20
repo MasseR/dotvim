@@ -195,5 +195,5 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 " Provide a default for complete tag writing and partial updating
 let b:completetags = "ctags -R ."
 let b:partialtags = "ctags --append % tags"
-autocmd BufWritePost *.* :execute ":!" . b:partialtags
-noremap <F3> :silent :call ":!" . b:completetags
+autocmd BufWritePost *.* :silent :execute ":!" . b:partialtags
+noremap <F3> :execute ":!" . b:completetags <cr>
