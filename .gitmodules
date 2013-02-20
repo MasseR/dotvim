@@ -61,3 +61,6 @@
 [submodule "bundle/html-template-syntax"]
 	path = bundle/html-template-syntax
 	url = https://github.com/pbrisbin/html-template-syntax.git
+[submodule "bundle/Vimchant"]
+	path = bundle/Vimchant
+	url = https://github.com/vim-scripts/Vimchant.git

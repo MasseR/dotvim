@@ -190,3 +190,10 @@ endif
 " http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+" Tags handling
+" Provide a default for complete tag writing and partial updating
+let b:completetags = "ctags -R ."
+let b:partialtags = "ctags --append % tags"
+autocmd BufWritePost *.* :execute ":!" . b:partialtags
+noremap <F3> :silent :call ":!" . b:completetags
