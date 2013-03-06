@@ -9,8 +9,8 @@
 
 " try gf on import line, or ctrl-x ctrl-i, or [I, [i, ..
 if !exists("autocommands_loaded")
-    let autocommands_loaded=1
-    au BufWritePost *.hs :silent !hasktags -c --ignore-close-implementation .
+    let b:completetags = "hasktags -c --ignore-close-implementation ."
+    let b:partialtags = "hasktags -c --ignore-close-implementation ."
 endif
 let s:path = "%"
 let s:ipath = ""
