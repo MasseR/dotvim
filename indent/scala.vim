@@ -1,130 +1,103 @@
 " Vim indent file
-" Language:	Java
-" Maintainer:	Toby Allsopp <toby.allsopp@peace.com> (resigned)
-" Last Change:	2005 Mar 28
+" Language   : Scala (http://scala-lang.org/)
+" Maintainer : Stefan Matthias Aust
+" Last Change: 2006 Apr 13
 
-" Only load this indent file when no other was loaded.
 if exists("b:did_indent")
   finish
 endif
 let b:did_indent = 1
 
-" Indent Java anonymous classes correctly.
-setlocal cindent cinoptions& cinoptions+=j1
+setlocal indentexpr=GetScalaIndent()
 
-" The "extends" and "implements" lines start off with the wrong indent.
-setlocal indentkeys& indentkeys+=0=extends indentkeys+=0=implements
+setlocal indentkeys=0{,0},0),!^F,<>>,o,O
 
-" Set the function to do the work.
-setlocal indentexpr=GetJavaIndent()
+setlocal autoindent shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-let b:undo_indent = "set cin< cino< indentkeys< indentexpr<"
-
-" Only define the function once.
-if exists("*GetJavaIndent")
+if exists("*GetScalaIndent")
   finish
 endif
 
-function! SkipJavaBlanksAndComments(startline)
-  let lnum = a:startline
-  while lnum > 1
-    let lnum = prevnonblank(lnum)
-    if getline(lnum) =~ '\*/\s*$'
-      while getline(lnum) !~ '/\*' && lnum > 1
-        let lnum = lnum - 1
-      endwhile
-      if getline(lnum) =~ '^\s*/\*'
-        let lnum = lnum - 1
-      else
-        break
-      endif
-    elseif getline(lnum) =~ '^\s*//'
-      let lnum = lnum - 1
-    else
-      break
-    endif
-  endwhile
-  return lnum
+function! CountParens(line)
+  let line = substitute(a:line, '"\(.\|\\"\)*"', '', 'g')
+  let open = substitute(line, '[^(]', '', 'g')
+  let close = substitute(line, '[^)]', '', 'g')
+  return strlen(open) - strlen(close)
 endfunction
 
-function GetJavaIndent()
+function! GetScalaIndent()
+  " Find a non-blank line above the current line.
+  let lnum = prevnonblank(v:lnum - 1)
 
-  " Java is just like C; use the built-in C indenting and then correct a few
-  " specific cases.
-  let theIndent = cindent(v:lnum)
-
-  " If we're in the middle of a comment then just trust cindent
-  if getline(v:lnum) =~ '^\s*\*'
-    return theIndent
+  " Hit the start of the file, use zero indent.
+  if lnum == 0
+    return 0
   endif
 
-  " find start of previous line, in case it was a continuation line
-  let lnum = SkipJavaBlanksAndComments(v:lnum - 1)
-  let prev = lnum
-  while prev > 1
-    let next_prev = SkipJavaBlanksAndComments(prev - 1)
-    if getline(next_prev) !~ ',\s*$'
-      break
-    endif
-    let prev = next_prev
-  endwhile
+  let ind = indent(lnum)
+  let prevline = getline(lnum)
 
-  " Try to align "throws" lines for methods and "extends" and "implements" for
-  " classes.
-  if getline(v:lnum) =~ '^\s*\(extends\|implements\)\>'
-        \ && getline(lnum) !~ '^\s*\(extends\|implements\)\>'
-    let theIndent = theIndent + &sw
+  "Indent html literals
+  if prevline !~ '/>\s*$' && prevline =~ '^\s*<[a-zA-Z][^>]*>\s*$'
+    return ind + &shiftwidth
   endif
 
-  " correct for continuation lines of "throws", "implements" and "extends"
-  let cont_kw = matchstr(getline(prev),
-        \ '^\s*\zs\(throws\|implements\|extends\)\>\ze.*,\s*$')
-  if strlen(cont_kw) > 0
-    let amount = strlen(cont_kw) + 1
-    if getline(lnum) !~ ',\s*$'
-      let theIndent = theIndent - (amount + &sw)
-      if theIndent < 0
-        let theIndent = 0
-      endif
-    elseif prev == lnum
-      let theIndent = theIndent + amount
-      if cont_kw ==# 'throws'
-        let theIndent = theIndent + &sw
-      endif
-    endif
-  elseif getline(prev) =~ '^\s*\(throws\|implements\|extends\)\>'
-        \ && (getline(prev) =~ '{\s*$'
-        \  || getline(v:lnum) =~ '^\s*{\s*$')
-    let theIndent = theIndent - &sw
+  " Add a 'shiftwidth' after lines that start a block
+  " If if, for or while end with ), this is a one-line block
+  " If val, var, def end with =, this is a one-line block
+  if prevline =~ '^\s*\<\(\(else\s\+\)\?if\|for\|while\)\>.*[)]\s*$'
+        \ || prevline =~ '^\s*\<\(\(va[lr]\|def\)\>.*[=]\s*$'
+        \ || prevline =~ '^\s*\<else\>\s*$'
+        \ || prevline =~ '{\s*$'
+    let ind = ind + &shiftwidth
   endif
 
-  " When the line starts with a }, try aligning it with the matching {,
-  " skipping over "throws", "extends" and "implements" clauses.
-  if getline(v:lnum) =~ '^\s*}\s*\(//.*\|/\*.*\)\=$'
-    call cursor(v:lnum, 1)
-    silent normal %
-    let lnum = line('.')
-    if lnum < v:lnum
-      while lnum > 1
-        let next_lnum = SkipJavaBlanksAndComments(lnum - 1)
-        if getline(lnum) !~ '^\s*\(throws\|extends\|implements\)\>'
-              \ && getline(next_lnum) !~ ',\s*$'
-          break
-        endif
-        let lnum = prevnonblank(next_lnum)
-      endwhile
-      return indent(lnum)
-    endif
+  " If parenthesis are unbalanced, indent or dedent
+  let c = CountParens(prevline)
+  echo c
+  if c > 0
+    let ind = ind + &shiftwidth
+  elseif c < 0
+    let ind = ind - &shiftwidth
+  endif
+  
+  " Dedent after if, for, while and val, var, def without block
+  let pprevline = getline(prevnonblank(lnum - 1))
+  if pprevline =~ '^\s*\<\(\(else\s\+\)\?if\|for\|while\)\>.*[)]\s*$'
+        \ || pprevline =~ '^\s*\<\(\va[lr]\|def\)\>.*[=]\s*$'
+        \ || pprevline =~ '^\s*\<else\>\s*$'
+    let ind = ind - &shiftwidth
   endif
 
-  " Below a line starting with "}" never indent more.  Needed for a method
-  " below a method with an indented "throws" clause.
-  let lnum = SkipJavaBlanksAndComments(v:lnum - 1)
-  if getline(lnum) =~ '^\s*}\s*\(//.*\|/\*.*\)\=$' && indent(lnum) < theIndent
-    let theIndent = indent(lnum)
+  " Align 'for' clauses nicely
+  if prevline =~ '^\s*\<for\> (.*;\s*$'
+    let ind = ind - &shiftwidth + 5
   endif
 
-  return theIndent
+  " Subtract a 'shiftwidth' on '}' or html
+  let thisline = getline(v:lnum)
+  if thisline =~ '^\s*[})]' 
+        \ || thisline =~ '^\s*</[a-zA-Z][^>]*>'
+    let ind = ind - &shiftwidth
+  endif
+
+  " Indent multi-lines comments
+  if prevline =~ '^\s*\/\*\($\|[^*]\(\(\*\/\)\@!.\)*$\)'
+    let ind = ind + 1
+  endif
+
+  " Indent multi-lines ScalaDoc
+  if prevline =~ '^\s*\/\*\*\($\|[^*]\(\(\*\/\)\@!.\)*$\)'
+    let ind = ind + 2
+  endif
+
+  " Dedent after multi-lines comments & ScalaDoc
+  if prevline =~ '^\s*\(\(\/\*\)\@!.\)*\*\/.*$'
+    " Dedent 1
+    let ind = ind - 1
+    " Align to any multiple of 'shiftwidth'
+    let ind = ind - (ind % &shiftwidth)
+  endif
+
+  return ind
 endfunction
-
-" vi: sw=2 et
