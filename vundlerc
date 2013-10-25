@@ -1,0 +1,34 @@
+" vim: ft=vim
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'sukima/xmledit'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'sjl/gundo.vim'
+Bundle 'chrisbra/histwin.vim'
+Bundle 'pbrisbin/html-template-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'thinca/vim-localrc'
+Bundle 'sjbach/lusty'
+Bundle 'Shougo/neocomplcache'
+Bundle 'scrooloose/nerdtree'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+Bundle 'tpope/vim-surround'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kablamo/VimDebug'
+Bundle 'jimenezrick/vimerl'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'scrooloose/syntastic'
+
+
+Bundle 'dbext.vim'
+Bundle 'po.vim'
+Bundle 'sessionman.vim'
+Bundle 'slimv.vim'
+Bundle 'Vimchant'
+Bundle 'VimClojure'

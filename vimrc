@@ -240,3 +240,5 @@ autocmd VimLeave * :mksession!
 let g:EclimCompletionMethod = 'omnifunc'
 source ~/.vim/defaultneocomplsettings.vim
 
+" CtrlP config
+let g:ctrlp_cmd = "CtrlPBufTag"
