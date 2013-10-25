@@ -4,5 +4,5 @@ colorscheme zenburn
 set guioptions-=m " No menu
 set guioptions-=T " No toolbar
 " Inconsolata font for gvim
-set guifont=Inconsolata\ Medium\ 9
+set guifont=Inconsolata\ Medium\ 13
 inoremap <C-space> <C-x><C-o>
