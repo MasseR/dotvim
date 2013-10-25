@@ -5,4 +5,4 @@
 *.swp
 view/
 bundle/**
-~bundle/vundle
+!bundle/vundle
