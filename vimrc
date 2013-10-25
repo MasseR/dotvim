@@ -2,9 +2,14 @@
 set hidden " For lustyexplorer
 " Pathogen requires restarting the filetype plugins
 filetype off
-call pathogen#runtime_append_all_bundles()
+" call pathogen#runtime_append_all_bundles()
+
 
 let s:source=globpath(&rtp, "vimrc_example.vim")
+
+" Init vundle
+execute ":source " . globpath(&rtp, "vundlerc")
+
 execute ":source " . s:source
 unlet s:source
 filetype on
@@ -150,7 +155,7 @@ set wildmenu
 " Backups
 set backup
 
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+set statusline=%<\ %n:%f\ %m%r\ #%b\ %y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 set laststatus=2
 
 set backupdir=~/.backup/
@@ -180,7 +185,7 @@ noremap <F2> :GundoToggle<cr>
 set guioptions-=m " No menu
 set guioptions-=T " No toolbar
 " Inconsolata font for gvim
-set guifont=Inconsolata\ Medium\ 9
+set guifont=Inconsolata\ Medium\ 11
 
 " Read project settings
 if filereadable(".project.vim")
@@ -193,11 +198,47 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 
 " Tags handling
 " Provide a default for complete tag writing and partial updating
-let g:completetags = "ctags -R ."
-let g:partialtags = "ctags --append % tags"
+let g:completetags = "ctags-exuberant --exclude=Session.vim -R ."
+let g:partialtags = "ctags-exuberant --exclude=Session.vim --append % tags"
 autocmd BufNewFile *.* :let b:completetags = g:completetags
 autocmd BufNewFile *.* :let b:partialtags = g:partialtags
 autocmd BufReadPre *.* :let b:completetags = g:completetags
 autocmd BufReadPre *.* :let b:partialtags = g:partialtags
+autocmd BufWritePost *.* :let b:partialtags = g:partialtags
 autocmd BufWritePost *.* :silent :execute ":!" . b:partialtags
 noremap <F3> :execute ":!" . b:completetags <cr>
+
+" Cscope handling.
+" Enable this only for java for now
+let g:completecscope = "find . -iname '*.java' >> cscope.files && cscope -b"
+let g:partialcscope = "cscope -b"
+let g:cscope_cmd = ""
+autocmd BufWritePost *.java :silent :execute ":!" . g:partialcscope . " && " . b:partialtags
+noremap <F4> :execute ":!" . g:completecscope <cr>
+
+
+" My attempt to simplify some operations. Creating mappings for some common
+" operations
+
+" Text layout mappings
+
+" New items separated by commas to new lines
+noremap <leader>,r mx:s/,/,\r/g<cr>='x
+
+" Inlinexml to formatted xml
+noremap <leader>>< mx:%s/> *</>\r</g<cr>gg=G'x
+
+
+function! RestoreSession()
+    if filereadable("Session.vim")
+        source Session.vim
+    endif
+endfunction
+
+autocmd VimLeave * :mksession!
+
+let g:EclimCompletionMethod = 'omnifunc'
+source ~/.vim/defaultneocomplsettings.vim
+
+" CtrlP config
+let g:ctrlp_cmd = "CtrlPBufTag"
